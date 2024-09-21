@@ -15,7 +15,7 @@ var InitBackendOpt string
 
 var InitCmd = &cobra.Command{
 	Use: "initialize",
-	Short: "Initialize a project with",
+	Short: "Initialize a project with custom settings",
 	Aliases: []string{"init"},
 	// Args: cobra.ExactArgs(1),
 	Run: runInit,

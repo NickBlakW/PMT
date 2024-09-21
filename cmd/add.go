@@ -18,9 +18,14 @@ func runAdd(cmd *cobra.Command, args []string) {
 	var _, err = helpers.AddDirOrFile(args[0])
 
 	if err != nil {
-		fmt.Println("File or directory already exists")
+		if err.Error() == fmt.Sprintf("open %s: is a directory", args[0]) {
+			fmt.Printf("Directory %s created!\n", args[0])
+			return
+		}
+
+		fmt.Println(err.Error())
 		return
 	}
 
-	fmt.Printf("%s created!", args[0])
+	fmt.Printf("%s created!\n", args[0])
 }

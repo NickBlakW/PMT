@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -9,16 +10,33 @@ import (
 )
 
 func AddDirOrFile(path string) (*os.File, error) {
-	var _, err = os.Stat(path)
-
-	if os.IsExist(err) {
+	var exists, err = fileOrDirExists(path)
+	if err != nil {
 		return nil, err
 	}
 
-	if err := os.MkdirAll(filepath.Dir(path), os.ModePerm); err != nil {
+	if exists {
+		err = errors.New("file or directory already exists")
 		return nil, err
 	}
+	
+	if pathErr := os.MkdirAll(filepath.Dir(path), os.ModePerm); pathErr != nil {
+		return nil, pathErr
+	}
+	
 	return os.Create(path)
+}
+
+func fileOrDirExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+
+	return false, err
 }
 
 func HandleRemoveDirOrFile(path string) (string, error) {
