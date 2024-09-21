@@ -1,9 +1,0 @@
-{
-	"name": "PMT",
-	"author": "NickBlakW",
-	"scripts": {
-		"run": "go run .",
-		"compile": "go build && echo 'Compiled successfully'",
-		"clean": "go mod tidy && echo 'Cleaned project'"
-	}
-}
