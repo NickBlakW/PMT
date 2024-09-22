@@ -1,10 +1,22 @@
 # PMT (Project Management Tool)
 
+<p align="center">
+    <a href="https://github.com/NickBlakW/PMT/blob/main/LICENSE">
+        <img src="https://img.shields.io/github/license/NickBlakW/PMT" alt="license" />
+    </a>
+    <a href="https://github.com/NickBlakW/PMT/actions/workflows/build.yml" rel="nofollow">
+        <img src="https://img.shields.io/github/actions/workflow/status/NickBlakW/PMT/build.yml?branch=main&logo=Github" alt="Build" />
+    </a>
+    <a href="https://github.com/NickBlakW/PMT/releases" rel="nofollow">
+        <img alt="release" src="https://img.shields.io/github/v/tag/NickBlakW/PMT?include_prereleases&label=version"/>
+    </a>
+</p>
+
 Inspired by the functionality of node.js and it's script execution from the 'package.json' file this CLI tool serves to make the tedious task of writing console commands much easier and simpler.
 
 ## Setup
 
-Download the release appropriate for your system. If you are on windows make sure to add the binary path to the environment path variable.
+Download the [release](https://github.com/NickBlakW/PMT/releases) appropriate for your system. If you are on windows make sure to add the binary path to the environment path variable.
 Run the command `pmt -h` to see if it has been successfully added.
 
 ## Use
@@ -48,6 +60,8 @@ Example:\
 `pmt do compile`, this will compile the project if using Go\
 `pmt run dev`, this will start a dev server for a node.js project
 
+For now it is **NOT** recommended to use PMT for dev servers as there is no live printouts of errors and logs in the commandline.
+
 #### Add command
 
 `pmt add [flags]`\
@@ -70,3 +84,8 @@ Example:\
 `pmt rem example/`, removes a directory, with the name 'example', and all of its contents.\
 `pmt delete example/file.txt`, removes a file in the example directory.\
 `pmt del example/*.txt`, removes all files in the example directory with the extension '.txt'.
+
+## Future
+
+-   Optimizing JSON formatting and generating (it's pretty hard-coded now)
+-   Adding support for a YAML generator for docker-compose

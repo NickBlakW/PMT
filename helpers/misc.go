@@ -3,6 +3,7 @@ package helpers
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -45,4 +46,17 @@ func GetProjectAuthors() (string, error) {
 	}
 
 	return strings.Join(authors, "\n"), nil
+}
+
+func HandleCreateGoBackend(dir string) (string, error) {
+	workCmd := fmt.Sprintf("work init %s", dir)
+	args := strings.Split(workCmd, " ")
+
+	cmd, err := exec.Command("go", args...).Output()
+	if err != nil {
+		log.Fatal(err.Error())
+		return "", err
+	}
+
+	return string(cmd), nil
 }
