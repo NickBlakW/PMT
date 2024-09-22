@@ -57,7 +57,6 @@ func handleScript(script string) (string, error) {
 
 	cmd, err := exec.Command(scriptArgs[0], cmdArgs...).Output()
 
-	// err = cmd.Run()
 	if err != nil {
 		log.Fatalf("Script failed with error: %s\n", err.Error())
 	}
