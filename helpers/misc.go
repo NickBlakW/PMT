@@ -1,40 +1,26 @@
 package helpers
 
 import (
-	"encoding/json"
 	"errors"
-	"fmt"
-	"log"
-	"os"
-	"os/exec"
 	"strings"
+
+	"github.com/NickBlakW/pmt/helpers/utils"
 )
 
-func HandleOpenVSCode(path string) error {
-	cmd := exec.Command("code", path)
-
-	err := cmd.Run()
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func GetProjectAuthors() (string, error) {
-	content, err := os.ReadFile("PMTConfig.json")
+	cfg, err := utils.LoadConfig()
 	if err != nil {
 		return "PMT not initialized", err
 	}
 
-	var payload map[string]interface{}
-	err = json.Unmarshal(content, &payload)
-	if err != nil {
-		log.Fatal("Incorrectly formatted JSON file")
-	}
+	cfgAuthor := cfg.Author
+	authors := strings.Split(cfgAuthor, ",")
 
-	authorString := payload["author"]
-	authors := strings.Split(authorString.(string), ",")
+	if len(authors) == 1 {
+		e := `Author(s) not set, please add an author to the project.
+Use command 'pmt cfg mod -a [name]'`
+		return "", errors.New(e)
+	}
 
 	for i, a := range authors {
 		if strings.HasPrefix(a, "<") && strings.HasSuffix(a, ">") {
@@ -46,17 +32,4 @@ func GetProjectAuthors() (string, error) {
 	}
 
 	return strings.Join(authors, "\n"), nil
-}
-
-func HandleCreateGoBackend(dir string) (string, error) {
-	workCmd := fmt.Sprintf("work init %s", dir)
-	args := strings.Split(workCmd, " ")
-
-	cmd, err := exec.Command("go", args...).Output()
-	if err != nil {
-		log.Fatal(err.Error())
-		return "", err
-	}
-
-	return string(cmd), nil
 }

@@ -45,6 +45,24 @@ Flags:\
 `-n, --name` string Sets project name (default "<Project name here>")\
 `-w, --with` stringArray Initializes project with chosen option
 
+#### Registry commands
+
+Access the internal project registry in PMT\
+The registry is a text file that will be created at a path like this `~/users/<user>/.pmt/registry.pmt`, the file can be modified but it is not recommended to do so.
+
+Aliases:\
+`registry`, `reg`
+
+Args:\
+`add` registers current initialized project in the registry\
+`list` lists all registered projects in the registry\
+`remove` removes a registered project from the registry
+
+Flags:\
+`-a, --alt` register project with an alternative key\
+`-h, --help` help for registry
+`-v, --verbose` Shows verbose messages (only for list command)
+
 #### Execute command
 
 `pmt exec [flags]`\
@@ -87,5 +105,5 @@ Example:\
 
 ## Future
 
--   Optimizing JSON formatting and generating (it's pretty hard-coded now)
 -   Adding support for a YAML generator for docker-compose
+-   More options for registry commands

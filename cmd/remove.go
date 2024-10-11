@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/NickBlakW/pmt/helpers"
+	"github.com/NickBlakW/pmt/helpers/sys"
 	"github.com/spf13/cobra"
 )
 
@@ -16,7 +16,7 @@ var RemoveCmd = &cobra.Command{
 }
 
 func runRemoveCmd(cmd *cobra.Command, args []string) {
-	res, err := helpers.HandleRemoveDirOrFile(args[0])
+	res, err := sys.HandleRemoveDirOrFile(args[0])
 	if err != nil {
 		fmt.Println(err)
 		fmt.Println(res)
