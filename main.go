@@ -1,5 +1,6 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 NAME HERE https://github.com/NickBlakW
+Repo @ https://github.com/NickBlakW/PMT
 */
 package main
 

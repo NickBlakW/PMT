@@ -18,7 +18,6 @@ func runAuthorCmd(cmd *cobra.Command, args []string) {
 	authors, err := helpers.GetProjectAuthors()
 	if err != nil {
 		fmt.Println(err)
-		fmt.Println(authors)
 		return
 	}
 

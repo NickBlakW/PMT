@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/NickBlakW/pmt/helpers"
+	"github.com/NickBlakW/pmt/helpers/scripting"
 	"github.com/spf13/cobra"
 )
 
@@ -16,13 +16,9 @@ var ExecCmd = &cobra.Command{
 }
 
 func runExec(cmd *cobra.Command, args []string) {
-	output, err := helpers.RunScript(args[0])
+	output, err := scripting.RunScript(args[0])
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 	fmt.Println(output)
-}
-
-func ConfigExecCmd() {
-	
 }

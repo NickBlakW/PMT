@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/NickBlakW/pmt/helpers"
+	"github.com/NickBlakW/pmt/helpers/sys"
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +15,7 @@ var AddCmd = &cobra.Command{
 }
 
 func runAdd(cmd *cobra.Command, args []string) {
-	var _, err = helpers.AddDirOrFile(args[0])
+	var _, err = sys.AddDirOrFile(args[0])
 
 	if err != nil {
 		if err.Error() == fmt.Sprintf("open %s: is a directory", args[0]) {

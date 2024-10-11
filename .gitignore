@@ -15,4 +15,5 @@
 # vendor/
 
 # PMT
-PMTConfig.json
+pmt-config.json
+register.pmt
