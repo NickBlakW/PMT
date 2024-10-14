@@ -1,7 +1,7 @@
 # PMT (Project Management Tool)
 
 <p align="center">
-    <img src="./assets/logo.pmt.png" height="200px" alt="logo"/>
+    <img src="./assets/logo.pmt.png" height="350px" alt="logo"/>
 </p>
 
 <p align="center">
