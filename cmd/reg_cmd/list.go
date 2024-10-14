@@ -21,6 +21,11 @@ func runListCmd(cmd *cobra.Command, args []string) {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
+
+	if out == "" {
+		fmt.Println("No projects registered")
+		return
+	}
 	fmt.Println(out)
 }
 
