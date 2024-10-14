@@ -11,12 +11,11 @@ func ListRegisteredProjects(verbose bool) (string, error) {
 	var output string
 
 	for k, v := range projects {
+		if k == "" { break }
+
 		output += k
 
-		if verbose {
-			output += fmt.Sprintf("\t\t@  %s", v)
-		}
-		output += "\n"
+		if verbose { output += fmt.Sprintf("\t\t@  %s", v) }
 	}
 
 	return output, nil

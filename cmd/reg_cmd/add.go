@@ -18,7 +18,7 @@ var AddToRegCmd = &cobra.Command{
 func runRegistryAdd(cmd *cobra.Command, args[] string) {
 	out, err := registry.RegisterProject(RegisterAltFlag)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error())
 	}
 
 	fmt.Println(out)
