@@ -1,6 +1,8 @@
 # PMT (Project Management Tool)
 
-<img src="./assets/logo.pmt.png" style="height: 300px; display: block; margin: auto;" alt="logo"/>
+<p align="center">
+    <img src="./assets/logo.pmt.png" height="200px" alt="logo"/>
+</p>
 
 <p align="center">
     <a href="https://github.com/NickBlakW/PMT/blob/main/LICENSE">
