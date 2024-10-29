@@ -10,13 +10,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var version = "0.1.0"
+var version = "0.1.2"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "pmt",
+	Use:     "pmt",
 	Version: version,
-	Short: "PMT is a project management tool",
+	Short:   "PMT is a project management tool",
 	Long: `Inspired by the functionality of the package.json file from node and npm.
 PMT can execute defined scripts for you.
 It is also capable of both adding and removing both files and directories with simple commands.
@@ -32,11 +32,12 @@ func Execute() {
 
 func init() {
 	rootCmd.SetVersionTemplate(fmt.Sprintf("PMT version v%s\n", version))
+	rootCmd.AddCommand(UpdateCmd)
 
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	ConfigInitCmd()
 	rootCmd.AddCommand(InitCmd)
-	
+
 	rootCmd.AddCommand(AddCmd)
 	rootCmd.AddCommand(RemoveCmd)
 
@@ -52,5 +53,3 @@ func init() {
 	rootCmd.AddCommand(ConfigCmd)
 	ConfigCfgCmd()
 }
-
-
