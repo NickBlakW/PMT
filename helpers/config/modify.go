@@ -19,6 +19,8 @@ func ModifyConfig(author string, scripts []string, backend string, frontend stri
 	if len(scripts) > 0 {
 		scrs := make(map[string]interface{})
 
+		if len(cfg.Scripts) != 0 { maps.Copy(scrs, cfg.Scripts) }
+
 		for _, lang := range scripts {
 			switch (lang) {
 			case "go", "maven":

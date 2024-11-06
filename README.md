@@ -21,7 +21,7 @@ Inspired by the functionality of node.js and it's script execution from the 'pac
 ## Setup
 
 Download the [release](https://github.com/NickBlakW/PMT/releases) appropriate for your system. If you are on windows make sure to add the binary path to the environment path variable.
-Run the command `pmt -h` to see if it has been successfully added.
+Run the command `pmt -v` to see if it has been successfully added.
 
 ## Use
 

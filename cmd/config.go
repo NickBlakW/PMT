@@ -1,9 +1,7 @@
 package cmd
 
 import (
-	"fmt"
-
-	"github.com/NickBlakW/pmt/helpers/config"
+	cfg "github.com/NickBlakW/pmt/cmd/cfg_cmd"
 	"github.com/spf13/cobra"
 )
 
@@ -17,30 +15,19 @@ var ConfigCmd = &cobra.Command{
 	Short: "Handle the project configuration",
 	Aliases: []string{ "cfg" },
 	Args: cobra.ExactArgs(1),
-	Run: runCfg,
-}
-
-func runCfg(cmd *cobra.Command, args []string) {
-	inCmd := args[0]
-
-	switch (inCmd) {
-	case "modify", "mod":
-		out, err := config.ModifyConfig(CfgAuthorOpt, CfgScriptsOpt, CfgBackendOpt, CfgFrontendOpt)
-		if err != nil {
-			fmt.Println(out, err.Error())
-			return
-		}
-
-		fmt.Println(out)
-	default:
-		fmt.Println("No arguments given")
-		return 
-	}
+	// Run: runCfg,
 }
 
 func ConfigCfgCmd() {
-	ConfigCmd.Flags().StringArrayVarP(&CfgScriptsOpt, "script", "s", []string{}, "Adds script handlers")
-	ConfigCmd.Flags().StringVarP(&CfgAuthorOpt, "author", "a", "", "Adds author to project")
-	ConfigCmd.Flags().StringVarP(&CfgFrontendOpt, "frontend", "f", "", "Adds a defined frontend to project")
-	ConfigCmd.Flags().StringVarP(&CfgBackendOpt, "backend", "b", "", "Adds a defined backend to project")
+	ConfigCmd.AddCommand(cfg.ConfigModifyCmd)
+	cfg.ConfigModCfgCmd()
+
+	ConfigCmd.AddCommand(cfg.DeleteConfigCmd)
+	cfg.InitCfgDeleteCmd()
+
+	ConfigCmd.AddCommand(cfg.ConfigRemoveCmd)
+	// ConfigCmd.Flags().StringArrayVarP(&CfgScriptsOpt, "script", "s", []string{}, "Adds script handlers")
+	// ConfigCmd.Flags().StringVarP(&CfgAuthorOpt, "author", "a", "", "Adds author to project")
+	// ConfigCmd.Flags().StringVarP(&CfgFrontendOpt, "frontend", "f", "", "Adds a defined frontend to project")
+	// ConfigCmd.Flags().StringVarP(&CfgBackendOpt, "backend", "b", "", "Adds a defined backend to project")
 }

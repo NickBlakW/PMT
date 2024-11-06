@@ -14,10 +14,12 @@ func HandleRemoveRegisteredProj(reg string) (string, error) {
 		return "", err
 	}
 
+	if _, ok := projects[reg]; !ok {
+		return "", fmt.Errorf("'%s' not found in registry", reg)
+	}
+
 	var toWrite []string
 	for k, v := range projects {
-		fmt.Println(k + "\t" + v)
-
 		if reg == k {
 			continue
 		}
@@ -25,8 +27,6 @@ func HandleRemoveRegisteredProj(reg string) (string, error) {
 
 		toWrite = append(toWrite, p)
 	}
-
-	fmt.Println(toWrite)
 
 	regFile, err := utils.GetPMTGlobalDir()
 	if err != nil {
@@ -45,5 +45,5 @@ func HandleRemoveRegisteredProj(reg string) (string, error) {
 		file.WriteString(fmt.Sprintf("%s\n", s))
 	}
 
-	return fmt.Sprintf("Project %s removed from registry", reg), nil
+	return fmt.Sprintf("Project '%s' removed from registry", reg), nil
 }
